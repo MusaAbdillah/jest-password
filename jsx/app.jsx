@@ -11,4 +11,13 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<Password />, document.getElementById("password"))
+ReactDOM.render(
+			<Password
+				upperCase={true}
+				lowerCase={true}
+				special={true}
+				number={true}
+				over6={true}
+				 />, 
+			 document.getElementById("password")
+)

@@ -9515,13 +9515,6 @@ class Password extends React.Component {
 		this.toggleVisibility = this.toggleVisibility.bind(this);
 	}
 
-	generate() {
-		// 
-		this.setState({ visible: true, password: generatePassword() }, () => {
-			this.checkStrength({ target: { value: this.state.password } });
-		});
-	}
-
 	checkStrength(event) {
 		let password = event.target.value;
 		this.setState({ password: password });
@@ -9548,7 +9541,17 @@ class Password extends React.Component {
 		this.setState({ visible: !this.state.visible }, () => {});
 	}
 
+	generate() {
+		// 
+		this.setState({ visible: true, password: generatePassword() }, () => {
+			this.checkStrength({ target: { value: this.state.password } });
+		});
+	}
+
 	render() {
+		console.log("this.props[key]====================");
+		console.log(Object.keys(this.props));
+		console.log("this.props[key]====================");
 		var processedRules = Object.keys(this.props).map(key => {
 			if (this.props[key]) {
 				return {
@@ -9559,6 +9562,9 @@ class Password extends React.Component {
 			}
 		});
 
+		console.log("processedRules=============================");
+		console.log(processedRules);
+		console.log("processedRules=============================");
 		return React.createElement(
 			"div",
 			{ className: "well form-group col-md-6" },
@@ -9681,7 +9687,13 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(React.createElement(Password, null), document.getElementById("password"));
+ReactDOM.render(React.createElement(Password, {
+	upperCase: true,
+	lowerCase: true,
+	special: true,
+	number: true,
+	over6: true
+}), document.getElementById("password"));
 
 /***/ }),
 /* 86 */
@@ -9719,6 +9731,9 @@ class PasswordInfo extends React.Component {
 				null,
 				" Password Strength "
 			),
+			console.log("============================"),
+			console.log(this.props.rules),
+			console.log("============================"),
 			React.createElement(
 				"ul",
 				null,

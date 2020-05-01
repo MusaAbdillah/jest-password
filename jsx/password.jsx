@@ -23,13 +23,6 @@ class Password extends React.Component {
 		this.toggleVisibility = this.toggleVisibility.bind(this)
 	}
 
-	generate(){
-		// 
-		this.setState({visible: true, password: generatePassword()}, () => {
-			this.checkStrength({target: {value: this.state.password}})
-		})
-	}
-
 	checkStrength(event){
 		let password = event.target.value
 		this.setState({password: password})
@@ -58,7 +51,17 @@ class Password extends React.Component {
 		})
 	}
 
+	generate(){
+		// 
+		this.setState({visible: true, password: generatePassword()}, () => {
+			this.checkStrength({target: {value: this.state.password}})
+		})
+	}
+
 	render(){
+			console.log("this.props[key]====================")
+			console.log(Object.keys(this.props))
+			console.log("this.props[key]====================")
 		var processedRules = Object.keys(this.props).map((key) => {
 			if (this.props[key]) {
 				return {
@@ -69,6 +72,9 @@ class Password extends React.Component {
 			}
 		})
 
+		console.log("processedRules=============================")
+		console.log(processedRules)
+		console.log("processedRules=============================")
 		return (
 			<div className="well form-group col-md-6">
 				<label> Password </label>

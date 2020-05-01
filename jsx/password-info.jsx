@@ -5,6 +5,9 @@ class PasswordInfo extends React.Component {
 		return (
 			<div>
 				<h4> Password Strength </h4>
+				{console.log("============================")}
+				{console.log(this.props.rules)}
+				{console.log("============================")}
 				<ul>
 					{
 						this.props.rules.map(function(processedRule, index, list) {
